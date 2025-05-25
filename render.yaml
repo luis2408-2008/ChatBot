@@ -2,12 +2,11 @@ services:
   - type: web
     name: luisai
     env: python
-    plan: free
-    buildCommand: pip install -r requirements_render.txt
-    startCommand: gunicorn --bind 0.0.0.0:$PORT --timeout 120 --workers 1 main:app
+    buildCommand: pip install flask flask-sqlalchemy google-generativeai python-dotenv gunicorn psycopg2-binary werkzeug
+    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
     envVars:
       - key: SESSION_SECRET
-        value: chatLuz-super-secret-key-2024-render
+        value: luisai-super-secret-key-2024-render
       - key: GEMINI_API_KEY
         value: AIzaSyDoPUP3jjdE_7qQM7ZUNFhPVfPqSlscIzw
       - key: FLASK_ENV
@@ -18,15 +17,7 @@ services:
         value: postgresql://ia_sshg_user:2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n@dpg-d0pj99gdl3ps73aroen0-a/ia_sshg
       - key: LOG_LEVEL
         value: INFO
-      - key: PGDATABASE
-        value: ia_sshg
-      - key: PGHOST
-        value: dpg-d0pj99gdl3ps73aroen0-a
-      - key: PGPASSWORD
-        value: 2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n
-      - key: PGPORT
-        value: 5432
-      - key: PGUSER
-        value: ia_sshg_user
+      - key: PYTHON_VERSION
+        value: 3.11.0
     healthCheckPath: /
     autoDeploy: true
