@@ -3,9 +3,7 @@ services:
     name: luisai
     env: python
     plan: free
-    buildCommand: |
-      python -m pip install --upgrade pip
-      pip install -r requirements_render.txt
+    buildCommand: pip install -r requirements_render.txt
     startCommand: gunicorn --bind 0.0.0.0:$PORT --timeout 120 --workers 1 main:app
     envVars:
       - key: SESSION_SECRET
