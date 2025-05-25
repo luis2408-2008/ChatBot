@@ -1,0 +1,50 @@
+⸻
+
+Por favor, crea una aplicación completa en Python de un chatbot de inteligencia artificial utilizando la API de Google Gemini. Ya tengo mi API key: AIzaSyDoPUP3jjdE_7qQM7ZUNFhPVfPqSlscIzw
+
+Requisitos del proyecto:
+
+1. Backend (en Python):
+	•	Usa FastAPI o Flask como framework.
+	•	Conéctate al API de Gemini para obtener respuestas inteligentes.
+	•	Implementa almacenamiento en base de datos (PostgreSQL o SQLite) para guardar el historial de conversación por usuario.
+	•	Permite que la IA recuerde el contexto de la conversación anterior.
+	•	Crea funciones claras y seguras para enviar preguntas y recibir respuestas.
+
+2. Frontend (interfaz):
+	•	Crea una interfaz de chat hermosa y moderna:
+	•	Usa HTML + Tailwind CSS o CSS puro con estilo profesional.
+	•	Diseño responsive (que funcione en móvil y escritorio).
+	•	Las respuestas del chatbot deben estar resaltadas visualmente, con estilo burbuja, colores distintos y títulos/subtítulos si es necesario.
+	•	Textos legibles, bien espaciados, claros y en español.
+	•	Animaciones suaves al enviar y recibir mensajes.
+
+3. Base de datos (funcional):
+	•	Usa SQLite o PostgreSQL para guardar:
+	•	Usuarios (si hay login).
+	•	Historial de conversaciones por sesión.
+	•	Debe poder recordar contextos pasados para mejores respuestas.
+
+4. Variables de entorno y configuración para Render:
+	•	Crea un archivo .env con las variables necesarias para que funcione en Render
+
+Crea también el archivo render.yaml o dame los comandos:
+
+Build command:
+
+pip install -r requirements.txt
+
+y un start command por favor 
+
+Asegúrate de que el proyecto sea 100% funcional, sin errores, y listo para desplegar directamente en Render.com.
+
+5. Otros requisitos:
+	•	Todo en español.
+	•	Respuestas claras, concisas y bien estructuradas.
+	•	Código limpio, comentado y modular.
+	•	El nombre de la app puede ser algo creativo como: “ChatLuz” o “Mente IA”, tú puedes sugerir el mejor.
+	•	Que sea impresionante visualmente y funcionalmente.
+
+⸻
+
+Gracias, gracias, gracias. Este proyecto es muy importante para mí. ¡Hazlo como si fuera la mejor app de chatbot en Python del mundo!
