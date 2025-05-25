@@ -1,7 +1,7 @@
-# Variables de entorno para ChatLuz en Render
+# Variables de entorno para Luis AI en Render
 # Copia y pega estas variables en tu configuración de Render
 
-SESSION_SECRET=chatLuz-super-secret-key-2024-render
+SESSION_SECRET=luisai-super-secret-key-2024-render
 GEMINI_API_KEY=AIzaSyDoPUP3jjdE_7qQM7ZUNFhPVfPqSlscIzw
 DATABASE_URL=postgresql://ia_sshg_user:2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n@dpg-d0pj99gdl3ps73aroen0-a/ia_sshg
 FLASK_ENV=production
@@ -12,3 +12,4 @@ PGHOST=dpg-d0pj99gdl3ps73aroen0-a
 PGPASSWORD=2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n
 PGPORT=5432
 PGUSER=ia_sshg_user
+PYTHON_VERSION=3.11

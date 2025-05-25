@@ -1,10 +1,12 @@
 services:
   - type: web
-    name: chatluz
+    name: luisai
     env: python
     plan: free
-    buildCommand: pip install flask flask-sqlalchemy google-generativeai python-dotenv gunicorn psycopg2-binary
-    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements_render.txt
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --timeout 120 --workers 1 main:app
     envVars:
       - key: SESSION_SECRET
         value: chatLuz-super-secret-key-2024-render

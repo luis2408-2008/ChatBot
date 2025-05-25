@@ -19,7 +19,10 @@ app.secret_key = os.environ.get("SESSION_SECRET", "dev-secret-key-chatLuz-2024")
 app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
 
 # Configure the database
-database_url = os.environ.get("DATABASE_URL", "sqlite:///chatLuz.db")
+database_url = os.environ.get("DATABASE_URL")
+if not database_url:
+    database_url = "sqlite:///luisai.db"
+
 app.config["SQLALCHEMY_DATABASE_URI"] = database_url
 app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
     "pool_recycle": 300,
