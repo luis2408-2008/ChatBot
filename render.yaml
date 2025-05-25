@@ -5,8 +5,8 @@ services:
     plan: free
     buildCommand: |
       pip install --upgrade pip
-      pip install flask flask-sqlalchemy google-generativeai python-dotenv gunicorn
-    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
+      pip install flask flask-sqlalchemy google-generativeai python-dotenv gunicorn psycopg2-binary werkzeug email-validator sqlalchemy
+    startCommand: gunicorn --bind 0.0.0.0:$PORT --reuse-port --reload main:app
     envVars:
       - key: SESSION_SECRET
         value: chatLuz-super-secret-key-2024-render
@@ -17,12 +17,18 @@ services:
       - key: FLASK_DEBUG
         value: False
       - key: DATABASE_URL
-        value: sqlite:///chatLuz.db
+        value: postgresql://ia_sshg_user:2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n@dpg-d0pj99gdl3ps73aroen0-a/ia_sshg
       - key: LOG_LEVEL
         value: INFO
+      - key: PGDATABASE
+        value: ia_sshg
+      - key: PGHOST
+        value: dpg-d0pj99gdl3ps73aroen0-a
+      - key: PGPASSWORD
+        value: 2vzQmBYML3GTSBD8iV45Je7qwuZk9W5n
+      - key: PGPORT
+        value: 5432
+      - key: PGUSER
+        value: ia_sshg_user
     healthCheckPath: /
     autoDeploy: true
-    disk:
-      name: chatluz-disk
-      mountPath: /opt/render/project/src
-      sizeGB: 1
