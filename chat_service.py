@@ -16,8 +16,8 @@ class ChatLuzService:
         api_key = os.getenv("GEMINI_API_KEY", "AIzaSyDoPUP3jjdE_7qQM7ZUNFhPVfPqSlscIzw")
         genai.configure(api_key=api_key)
         
-        # Configurar el modelo
-        self.model = genai.GenerativeModel('gemini-pro')
+        # Configurar el modelo (Gemini 2.0 Flash - más rápido y actualizado)
+        self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
         
         # Configuración de seguridad
         self.safety_settings = [
