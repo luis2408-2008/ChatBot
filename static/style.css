@@ -1,11 +1,12 @@
-/* Estilos personalizados para ChatLuz */
+/* Estilos personalizados para Luis AI */
 
-/* Variables CSS para el tema */
+/* Variables CSS para el tema moderno */
 :root {
+    --primary-violet: 139 92 246; /* #8B5CF6 */
+    --primary-purple: 147 51 234; /* #9333EA */
     --primary-blue: 59 130 246; /* #3B82F6 */
-    --primary-indigo: 99 102 241; /* #6366F1 */
-    --secondary-gray: 107 114 128; /* #6B7280 */
-    --light-gray: 249 250 251; /* #F9FAFB */
+    --secondary-slate: 71 85 105; /* #475569 */
+    --light-slate: 248 250 252; /* #F8FAFC */
     --white: 255 255 255; /* #FFFFFF */
     --success-green: 34 197 94; /* #22C55E */
     --danger-red: 239 68 68; /* #EF4444 */
@@ -54,57 +55,60 @@
     }
 }
 
-/* Estilos para las burbujas de mensaje */
+/* Estilos para las burbujas de mensaje mejoradas */
 .message-bubble {
-    max-width: 80%;
-    padding: 12px 16px;
-    border-radius: 18px;
-    margin-bottom: 16px;
+    max-width: 85%;
+    padding: 18px 24px;
+    border-radius: 24px;
+    margin-bottom: 20px;
     word-wrap: break-word;
-    animation: fadeInUp 0.3s ease-out;
+    animation: fadeInUp 0.4s ease-out;
+    font-size: 16px;
+    line-height: 1.6;
+    font-weight: 400;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .message-bubble.user {
-    background: linear-gradient(135deg, rgb(var(--primary-blue)), rgb(var(--primary-indigo)));
+    background: linear-gradient(135deg, rgb(var(--primary-violet)), rgb(var(--primary-purple)));
     color: white;
     margin-left: auto;
-    border-bottom-right-radius: 4px;
-    animation: slideInRight 0.3s ease-out;
+    border-bottom-right-radius: 8px;
+    animation: slideInRight 0.4s ease-out;
+    box-shadow: 0 8px 24px rgba(139, 92, 246, 0.25);
 }
 
 .message-bubble.ai {
-    background: rgb(var(--light-gray));
-    color: rgb(var(--secondary-gray));
-    border: 1px solid rgb(229 231 235); /* gray-200 */
-    margin-right: auto;
-    border-bottom-left-radius: 4px;
-    animation: slideInLeft 0.3s ease-out;
-}
-
-.message-bubble.ai {
-    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    color: rgb(var(--secondary-slate));
     border: 1px solid #e2e8f0;
+    margin-right: auto;
+    border-bottom-left-radius: 8px;
+    animation: slideInLeft 0.4s ease-out;
+    box-shadow: 0 8px 24px rgba(71, 85, 105, 0.08);
 }
 
-/* Avatar styles */
+/* Avatar styles mejorados */
 .message-avatar {
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 16px;
     flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    font-weight: 500;
 }
 
 .message-avatar.user {
-    background: linear-gradient(135deg, rgb(var(--primary-blue)), rgb(var(--primary-indigo)));
+    background: linear-gradient(135deg, rgb(var(--primary-violet)), rgb(var(--primary-purple)));
     color: white;
 }
 
 .message-avatar.ai {
-    background: linear-gradient(135deg, #10b981, #059669);
+    background: linear-gradient(135deg, rgb(var(--primary-violet)), rgb(var(--primary-blue)));
     color: white;
 }
 

@@ -131,9 +131,9 @@ class ChatLuzApp {
         
         if (type === 'user') {
             messageDiv.innerHTML = `
-                <div class="flex flex-col items-end max-w-xs sm:max-w-md lg:max-w-lg">
+                <div class="flex flex-col items-end max-w-sm sm:max-w-lg lg:max-w-xl">
                     <div class="message-bubble user">
-                        <p class="text-sm">${this.formatMessage(content)}</p>
+                        <div class="text-base">${this.formatMessage(content)}</div>
                     </div>
                     <div class="message-timestamp text-right">${timestamp}</div>
                 </div>
@@ -144,11 +144,11 @@ class ChatLuzApp {
         } else {
             messageDiv.innerHTML = `
                 <div class="message-avatar ai">
-                    <i class="fas fa-robot"></i>
+                    <i class="fas fa-brain"></i>
                 </div>
-                <div class="flex flex-col max-w-xs sm:max-w-md lg:max-w-lg">
+                <div class="flex flex-col max-w-sm sm:max-w-lg lg:max-w-xl">
                     <div class="message-bubble ai">
-                        <p class="text-sm">${this.formatMessage(content)}</p>
+                        <div class="text-base">${this.formatMessage(content)}</div>
                     </div>
                     <div class="message-timestamp">${timestamp}</div>
                 </div>
@@ -160,24 +160,54 @@ class ChatLuzApp {
     }
 
     formatMessage(content) {
-        // Escapar HTML y convertir enlaces y saltos de línea
-        const escaped = content
+        // Escapar HTML básico
+        let formatted = content
             .replace(/&/g, '&amp;')
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#039;');
         
-        // Convertir saltos de línea a <br>
-        const withBreaks = escaped.replace(/\n/g, '<br>');
+        // Remover asteriscos y convertir a formato HTML elegante
+        // Convertir **texto** a <strong>
+        formatted = formatted.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-800">$1</strong>');
         
-        // Convertir URLs a enlaces (simple)
-        const withLinks = withBreaks.replace(
+        // Convertir *texto* a <em>
+        formatted = formatted.replace(/\*(.*?)\*/g, '<em class="italic text-slate-700">$1</em>');
+        
+        // Convertir títulos ### a h3
+        formatted = formatted.replace(/###\s*(.*?)(?=\n|$)/g, '<h3 class="text-lg font-bold text-slate-800 mt-4 mb-2">$1</h3>');
+        
+        // Convertir títulos ## a h2
+        formatted = formatted.replace(/##\s*(.*?)(?=\n|$)/g, '<h2 class="text-xl font-bold text-slate-800 mt-5 mb-3">$1</h2>');
+        
+        // Convertir títulos # a h1
+        formatted = formatted.replace(/#\s*(.*?)(?=\n|$)/g, '<h1 class="text-2xl font-bold text-slate-800 mt-6 mb-4">$1</h1>');
+        
+        // Convertir listas con - o *
+        formatted = formatted.replace(/^[-*]\s+(.+)$/gm, '<li class="ml-4 mb-1 text-slate-700">• $1</li>');
+        
+        // Envolver listas en <ul>
+        formatted = formatted.replace(/(<li.*?<\/li>\s*)+/g, '<ul class="space-y-1 my-3">$&</ul>');
+        
+        // Convertir saltos de línea dobles a párrafos
+        formatted = formatted.replace(/\n\n/g, '</p><p class="mb-3 text-slate-700">');
+        
+        // Envolver en párrafo si no hay etiquetas de bloque
+        if (!formatted.includes('<h1>') && !formatted.includes('<h2>') && !formatted.includes('<h3>') && !formatted.includes('<ul>')) {
+            formatted = '<p class="text-slate-700 leading-relaxed">' + formatted + '</p>';
+        }
+        
+        // Convertir saltos de línea simples a <br>
+        formatted = formatted.replace(/\n/g, '<br>');
+        
+        // Convertir URLs a enlaces
+        formatted = formatted.replace(
             /(https?:\/\/[^\s<>"]+)/gi,
-            '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 underline">$1</a>'
+            '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-violet-600 hover:text-violet-800 underline font-medium">$1</a>'
         );
         
-        return withLinks;
+        return formatted;
     }
 
     showTypingIndicator() {
