@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: chatluz
+    env: python
+    plan: free
+    buildCommand: |
+      pip install --upgrade pip
+      pip install flask flask-sqlalchemy google-generativeai python-dotenv gunicorn
+    startCommand: gunicorn --bind 0.0.0.0:$PORT main:app
+    envVars:
+      - key: SESSION_SECRET
+        value: chatLuz-super-secret-key-2024-render
+      - key: GEMINI_API_KEY
+        value: AIzaSyDoPUP3jjdE_7qQM7ZUNFhPVfPqSlscIzw
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: False
+      - key: DATABASE_URL
+        value: sqlite:///chatLuz.db
+      - key: LOG_LEVEL
+        value: INFO
+    healthCheckPath: /
+    autoDeploy: true
+    disk:
+      name: chatluz-disk
+      mountPath: /opt/render/project/src
+      sizeGB: 1
